@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrations</title>
+</head>
+<body>
+    <h1>Registrations</h1>
+    
+    {% if registrations %}
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Lunch Choice</th>
+                    <th>Days</th>
+                    <th>Allergies</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for index, reg in registrations %}
+                    <tr>
+                        <td>{{ reg[0] }}</td>
+                        <td>{{ reg[1] }}</td>
+                        <td>{{ reg[2] }}</td>
+                        <td>{{ reg[3] }}</td>
+                        <td>{{ reg[4] }}</td>
+                        <td>
+                            <form action="{{ url_for('delete_registration', index=index) }}" method="POST">
+                                <input type="submit" value="Delete">
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No registrations found.</p>
+    {% endif %}
+    
+    <a href="{{ url_for('register') }}">Back to Registration Form</a>
+</body>
+</html>

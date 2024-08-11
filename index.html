@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lunch Registration</title>
+</head>
+<body>
+    <h1>Lunch Registration Form</h1>
+    
+    {% if errors %}
+        <ul class="errors">
+            {% for error in errors %}
+                <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <form action="{{ url_for('submit') }}" method="POST">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" value="{{ name or '' }}" required><br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" value="{{ email or '' }}" required><br><br>
+
+        <label for="lunch_choice">Lunch Choice:</label><br>
+        <select id="lunch_choice" name="lunch_choice" required>
+            <option value="" disabled>Select your option</option>
+            <option value="Vegetarian" {% if lunch_choice == 'Vegetarian' %}selected{% endif %}>Vegetarian</option>
+            <option value="Non-Vegetarian" {% if lunch_choice == 'Non-Vegetarian' %}selected{% endif %}>Non-Vegetarian</option>
+            <option value="Vegan" {% if lunch_choice == 'Vegan' %}selected{% endif %}>Vegan</option>
+        </select><br><br>
+
+        <label>Which days of the week do you require lunch?</label><br>
+        <input type="checkbox" id="monday" name="days[]" value="Monday" {% if 'Monday' in days %}checked{% endif %}>
+        <label for="monday">Monday</label><br>
+
+        <input type="checkbox" id="tuesday" name="days[]" value="Tuesday" {% if 'Tuesday' in days %}checked{% endif %}>
+        <label for="tuesday">Tuesday</label><br>
+
+        <input type="checkbox" id="wednesday" name="days[]" value="Wednesday" {% if 'Wednesday' in days %}checked{% endif %}>
+        <label for="wednesday">Wednesday</label><br>
+
+        <input type="checkbox" id="thursday" name="days[]" value="Thursday" {% if 'Thursday' in days %}checked{% endif %}>
+        <label for="thursday">Thursday</label><br>
+
+        <input type="checkbox" id="friday" name="days[]" value="Friday" {% if 'Friday' in days %}checked{% endif %}>
+        <label for="friday">Friday</label><br>
+
+        <input type="checkbox" id="saturday" name="days[]" value="Saturday" {% if 'Saturday' in days %}checked{% endif %}>
+        <label for="saturday">Saturday</label><br>
+
+        <input type="checkbox" id="sunday" name="days[]" value="Sunday" {% if 'Sunday' in days %}checked{% endif %}>
+        <label for="sunday">Sunday</label><br><br>
+
+        <label for="allergies">Any Allergies:</label><br>
+        <input type="text" id="allergies" name="allergies" value="{{ allergies or '' }}"><br><br>
+
+        <input type="submit" value="Register">
+    </form>
+</body>
+</html>
