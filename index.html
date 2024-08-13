@@ -18,7 +18,7 @@
 
     <form action="{{ url_for('submit') }}" method="POST">
         <label for="name">Name:</label><br>
-        <input type="text" id="name" name="name" value="{{ name or '' }}" required><br><br>
+        <input type="text" id="name" name="name" value="name" required><br><br>
 
         <label for="email">Email:</label><br>
         <input type="email" id="email" name="email" value="{{ email or '' }}" required><br><br>
